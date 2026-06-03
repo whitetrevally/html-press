@@ -12,7 +12,7 @@ description:
     zh_Hans: "将HTML源代码转换为PNG图片。"
     pt_BR: "Converte codigo-fonte HTML em imagem PNG."
     ja_JP: "HTMLソースコードをPNG画像に変換します。"
-  llm: "Convert HTML to PNG. CRITICAL RULES: 1) ALWAYS set background-color:#ffffff on the body element, or use a full-size SVG rect with fill color as the first element. NEVER leave the background transparent. 2) NEVER use CSS flexbox, grid, linear-gradient, box-shadow, or border-radius - they are NOT supported. 3) For ALL visual content (diagrams, charts, cards), MUST use inline SVG. SVG supports linearGradient, feDropShadow, rx/ry. 4) For text documents, use table or block layout with solid colors. 5) Do NOT set width/height unless user requests."
+  llm: "Convert HTML to PNG. CRITICAL RULES: 1) ALWAYS set background-color:#ffffff on the body element, or use a full-size SVG rect with fill color as the first element. NEVER leave the background transparent. 2) NEVER use CSS flexbox, grid, linear-gradient, box-shadow, or border-radius - they are NOT supported. 3) For ALL visual content (diagrams, charts, cards), MUST use inline SVG. SVG supports linearGradient, feDropShadow, rx/ry. 4) For text documents, use table or block layout with solid colors. 5) Do NOT set width/height unless user requests. 6) SVG TEXT OVERFLOW PREVENTION: SVG <text> does NOT wrap automatically. When placing text inside a <rect>, ALWAYS add textLength=(rect_width * 0.9) and lengthAdjust=\"spacingAndGlyphs\" to prevent overflow. If text is too long for one line, split into multiple <text> elements with different y positions. Choose font-size conservatively - estimate character count * font-size * 0.6 must be less than rect width."
 parameters:
   - name: html
     type: string

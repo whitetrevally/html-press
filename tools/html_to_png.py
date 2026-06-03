@@ -17,7 +17,7 @@ def _build_style_tag() -> str:
         "<style>"
         "@font-face { font-family: 'NotoSansJP'; src: url('notosansjp.ttf') format('truetype'); }"
         "@font-face { font-family: 'NotoColorEmoji'; src: url('notocoloremoji.ttf') format('truetype'); }"
-        "* { font-family: NotoColorEmoji, NotoSansJP, Arial, Helvetica, sans-serif !important; }"
+        "* { font-family: NotoSansJP, NotoColorEmoji, Arial, Helvetica, sans-serif !important; }"
         "body { background-color: #ffffff; }"
         "</style>"
     )
