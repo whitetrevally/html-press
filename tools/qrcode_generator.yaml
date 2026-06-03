@@ -1,0 +1,87 @@
+identity:
+  name: "qrcode_generator"
+  author: "whitetrevally"
+  label:
+    en_US: "QR Code Generator"
+    zh_Hans: "二维码生成器"
+    pt_BR: "Gerador de QR Code"
+    ja_JP: "QRコード生成"
+description:
+  human:
+    en_US: "Generate a QR code image from text or a URL."
+    zh_Hans: "从文本或URL生成二维码图片。"
+    pt_BR: "Gera uma imagem de QR code a partir de texto ou URL."
+    ja_JP: "テキストまたはURLからQRコード画像を生成します。"
+  llm: "Generate a QR code as a PNG image from any text or URL. Supports custom size and colors."
+parameters:
+  - name: data
+    type: string
+    required: true
+    label:
+      en_US: "Data"
+      zh_Hans: "数据"
+      pt_BR: "Dados"
+      ja_JP: "データ"
+    human_description:
+      en_US: "The text or URL to encode in the QR code."
+      zh_Hans: "要编码到二维码中的文本或URL。"
+      pt_BR: "O texto ou URL para codificar no QR code."
+      ja_JP: "QRコードにエンコードするテキストまたはURL。"
+    llm_description: "The text, URL, email address, phone number, or any string data to encode into the QR code."
+    form: llm
+
+  - name: size
+    type: number
+    required: false
+    default: 256
+    label:
+      en_US: "Size (px)"
+      zh_Hans: "尺寸 (px)"
+      pt_BR: "Tamanho (px)"
+      ja_JP: "サイズ (px)"
+    human_description:
+      en_US: "The width and height of the QR code image in pixels. Default is 256."
+      zh_Hans: "二维码图片的宽度和高度（像素）。默认为256。"
+      pt_BR: "A largura e altura da imagem do QR code em pixels. O padrão é 256."
+      ja_JP: "QRコード画像の幅と高さ（ピクセル）。デフォルトは256です。"
+    llm_description: "The width and height of the output QR code image in pixels. Defaults to 256."
+    form: llm
+    min: 64
+    max: 2048
+
+  - name: foreground_color
+    type: string
+    required: false
+    default: "#000000"
+    label:
+      en_US: "Foreground Color"
+      zh_Hans: "前景色"
+      pt_BR: "Cor de Primeiro Plano"
+      ja_JP: "前景色"
+    human_description:
+      en_US: "The color of the QR code modules. Hex format, e.g. #000000."
+      zh_Hans: "二维码模块的颜色。十六进制格式，例如 #000000。"
+      pt_BR: "A cor dos módulos do QR code. Formato hexadecimal, ex: #000000."
+      ja_JP: "QRコードモジュールの色。16進形式、例：#000000。"
+    llm_description: "Hex color code for the QR code foreground. Example: '#000000' for black, '#FF0000' for red."
+    form: llm
+
+  - name: background_color
+    type: string
+    required: false
+    default: "#FFFFFF"
+    label:
+      en_US: "Background Color"
+      zh_Hans: "背景色"
+      pt_BR: "Cor de Fundo"
+      ja_JP: "背景色"
+    human_description:
+      en_US: "The background color of the QR code. Hex format, e.g. #FFFFFF."
+      zh_Hans: "二维码的背景颜色。十六进制格式，例如 #FFFFFF。"
+      pt_BR: "A cor de fundo do QR code. Formato hexadecimal, ex: #FFFFFF."
+      ja_JP: "QRコードの背景色。16進形式、例：#FFFFFF。"
+    llm_description: "Hex color code for the QR code background. Example: '#FFFFFF' for white."
+    form: llm
+extra:
+  python:
+    source: tools/qrcode_generator.py

@@ -1,0 +1,18 @@
+[project]
+name = "html-press"
+version = "0.1.0"
+description = "A document printing plugin that generates high-quality PDF and PNG from HTML source, with integrated QR code creation."
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "dify_plugin>=0.4.0,<0.7.0",
+    "plutoprint>=0.20.0",
+]
+
+# Python 3.14 にプリビルトホイールがないパッケージを強制（ローカル開発用、daemon には影響しない）
+[tool.uv]
+override-dependencies = [
+    "gevent>=26.5.0",
+    "tiktoken>=0.13.0",
+]
+

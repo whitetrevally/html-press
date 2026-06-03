@@ -1,0 +1,42 @@
+version: 0.0.1
+type: plugin
+author: whitetrevally
+name: html-press
+label:
+  en_US: html-press
+  ja_JP: html-press
+  zh_Hans: html-press
+  pt_BR: html-press
+description:
+  en_US: A document printing plugin that generates high-quality PDF and PNG from HTML source, with integrated QR code creation.
+  ja_JP: HTMLソースから高品質なPDFおよびPNGを生成し、QRコード作成機能を統合したドキュメント印刷プラグインです。
+  zh_Hans: 一款文档打印插件，可从 HTML 源生成高质量的 PDF 和 PNG，并集成二维码生成功能。
+  pt_BR: Um plugin de impressão de documentos que gera PDF e PNG de alta qualidade a partir de código-fonte HTML, com criação integrada de QR code.
+icon: icon.svg
+icon_dark: icon-dark.svg
+resource:
+  memory: 268435456
+  permission:
+    tool:
+      enabled: true
+    app:
+      enabled: true
+    storage:
+      enabled: true
+      size: 1048576
+plugins:
+  tools:
+    - provider/html-press.yaml
+meta:
+  version: 0.0.1
+  arch:
+    - amd64
+  runner:
+    language: python
+    version: "3.12"
+    entrypoint: main
+  minimum_dify_version: null
+created_at: 2026-06-03T09:35:49.5701742+09:00
+privacy: PRIVACY.md
+repo: https://github.com/whitetrevally/html-press
+verified: false

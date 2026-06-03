@@ -1,0 +1,147 @@
+identity:
+  name: "html_to_pdf"
+  author: "whitetrevally"
+  label:
+    en_US: "HTML to PDF"
+    zh_Hans: "HTML转PDF"
+    pt_BR: "HTML para PDF"
+    ja_JP: "HTML→PDF変換"
+description:
+  human:
+    en_US: "Convert HTML source code to a PDF document."
+    zh_Hans: "将HTML源代码转换为PDF文档。"
+    pt_BR: "Converte codigo-fonte HTML em documento PDF."
+    ja_JP: "HTMLソースコードをPDFドキュメントに変換します。"
+  llm: "Convert HTML to PDF. CRITICAL RULES: 1) ALWAYS set background-color:#ffffff on the body element, or use a full-size SVG rect with fill color as the first element. NEVER leave the background transparent. 2) NEVER use CSS flexbox, grid, linear-gradient, box-shadow, or border-radius - they are NOT supported. 3) For ALL visual content (diagrams, charts, cards), MUST use inline SVG. SVG supports linearGradient, feDropShadow, rx/ry. 4) For text documents, use table or block layout with solid colors."
+parameters:
+  - name: html
+    type: string
+    required: true
+    label:
+      en_US: "HTML Content"
+      zh_Hans: "HTML内容"
+      pt_BR: "Conteudo HTML"
+      ja_JP: "HTMLコンテンツ"
+    human_description:
+      en_US: "The HTML source code to render."
+      zh_Hans: "要渲染的HTML源代码。"
+      pt_BR: "O codigo-fonte HTML para renderizar."
+      ja_JP: "レンダリングするHTMLソースコード。"
+    llm_description: "The HTML source code to convert into a PDF document. Can be a full HTML document or a fragment. For visual content, use inline SVG instead of CSS styling."
+    form: llm
+
+  - name: page_size
+    type: select
+    required: false
+    default: "a4"
+    label:
+      en_US: "Page Size"
+      zh_Hans: "页面大小"
+      pt_BR: "Tamanho da Pagina"
+      ja_JP: "用紙サイズ"
+    human_description:
+      en_US: "Paper size for the PDF output."
+      zh_Hans: "PDF输出的纸张大小。"
+      pt_BR: "Tamanho do papel para a saida em PDF."
+      ja_JP: "PDF出力の用紙サイズ。"
+    llm_description: "Paper size for the PDF output. Common choices: a4 (standard international), letter (US standard). Default is a4 if omitted."
+    form: form
+    options:
+      - value: "a4"
+        label:
+          en_US: "A4"
+          zh_Hans: "A4"
+          pt_BR: "A4"
+          ja_JP: "A4"
+      - value: "a3"
+        label:
+          en_US: "A3"
+          zh_Hans: "A3"
+          pt_BR: "A3"
+          ja_JP: "A3"
+      - value: "a5"
+        label:
+          en_US: "A5"
+          zh_Hans: "A5"
+          pt_BR: "A5"
+          ja_JP: "A5"
+      - value: "b4"
+        label:
+          en_US: "B4"
+          zh_Hans: "B4"
+          pt_BR: "B4"
+          ja_JP: "B4"
+      - value: "b5"
+        label:
+          en_US: "B5"
+          zh_Hans: "B5"
+          pt_BR: "B5"
+          ja_JP: "B5"
+      - value: "letter"
+        label:
+          en_US: "Letter"
+          zh_Hans: "Letter"
+          pt_BR: "Letter"
+          ja_JP: "Letter"
+      - value: "legal"
+        label:
+          en_US: "Legal"
+          zh_Hans: "Legal"
+          pt_BR: "Legal"
+          ja_JP: "Legal"
+      - value: "ledger"
+        label:
+          en_US: "Ledger"
+          zh_Hans: "Ledger"
+          pt_BR: "Ledger"
+          ja_JP: "Ledger"
+
+  - name: orientation
+    type: select
+    required: false
+    default: "portrait"
+    label:
+      en_US: "Orientation"
+      zh_Hans: "方向"
+      pt_BR: "Orientacao"
+      ja_JP: "印刷方向"
+    human_description:
+      en_US: "Page orientation for the PDF output."
+      zh_Hans: "PDF输出的页面方向。"
+      pt_BR: "Orientacao da pagina para a saida em PDF."
+      ja_JP: "PDF出力のページの向き。"
+    llm_description: "Page orientation: portrait (vertical) or landscape (horizontal). Default is portrait."
+    form: form
+    options:
+      - value: "portrait"
+        label:
+          en_US: "Portrait"
+          zh_Hans: "纵向"
+          pt_BR: "Retrato"
+          ja_JP: "縦"
+      - value: "landscape"
+        label:
+          en_US: "Landscape"
+          zh_Hans: "横向"
+          pt_BR: "Paisagem"
+          ja_JP: "横"
+
+  - name: user_style
+    type: string
+    required: false
+    default: ""
+    label:
+      en_US: "Custom CSS"
+      zh_Hans: "自定义CSS"
+      pt_BR: "CSS Personalizado"
+      ja_JP: "カスタムCSS"
+    human_description:
+      en_US: "Additional CSS styles to apply when rendering the HTML."
+      zh_Hans: "渲染HTML时应用的额外CSS样式。"
+      pt_BR: "Estilos CSS adicionais para aplicar ao renderizar."
+      ja_JP: "HTMLレンダリング時に適用する追加CSSスタイル。"
+    llm_description: "Additional CSS stylesheet to apply on top of the HTML own styles. For example: body { font-family: sans-serif; margin: 20px; }"
+    form: llm
+extra:
+  python:
+    source: tools/html_to_pdf.py

@@ -1,0 +1,108 @@
+identity:
+  name: "html_to_png"
+  author: "whitetrevally"
+  label:
+    en_US: "HTML to PNG"
+    zh_Hans: "HTML转PNG"
+    pt_BR: "HTML para PNG"
+    ja_JP: "HTML→PNG変換"
+description:
+  human:
+    en_US: "Convert HTML source code to a PNG image."
+    zh_Hans: "将HTML源代码转换为PNG图片。"
+    pt_BR: "Converte codigo-fonte HTML em imagem PNG."
+    ja_JP: "HTMLソースコードをPNG画像に変換します。"
+  llm: "Convert HTML to PNG. CRITICAL RULES: 1) ALWAYS set background-color:#ffffff on the body element, or use a full-size SVG rect with fill color as the first element. NEVER leave the background transparent. 2) NEVER use CSS flexbox, grid, linear-gradient, box-shadow, or border-radius - they are NOT supported. 3) For ALL visual content (diagrams, charts, cards), MUST use inline SVG. SVG supports linearGradient, feDropShadow, rx/ry. 4) For text documents, use table or block layout with solid colors. 5) Do NOT set width/height unless user requests."
+parameters:
+  - name: html
+    type: string
+    required: true
+    label:
+      en_US: "HTML Content"
+      zh_Hans: "HTML内容"
+      pt_BR: "Conteudo HTML"
+      ja_JP: "HTMLコンテンツ"
+    human_description:
+      en_US: "The HTML source code to render."
+      zh_Hans: "要渲染的HTML源代码。"
+      pt_BR: "O codigo-fonte HTML para renderizar."
+      ja_JP: "レンダリングするHTMLソースコード。"
+    llm_description: "The HTML source code to convert into a PNG image. Can be a full HTML document or a fragment. For visual content, use inline SVG instead of CSS styling."
+    form: llm
+
+  - name: width
+    type: number
+    required: false
+    default: 0
+    label:
+      en_US: "Width (px)"
+      zh_Hans: "宽度 (px)"
+      pt_BR: "Largura (px)"
+      ja_JP: "幅 (px)"
+    human_description:
+      en_US: "Output width in pixels. 0 means auto-size from document content."
+      zh_Hans: "输出宽度（像素）。0表示根据文档内容自动调整。"
+      pt_BR: "Largura em pixels. 0 para tamanho automatico."
+      ja_JP: "出力幅（ピクセル）。0でドキュメント内容に合わせて自動調整。"
+    llm_description: "Output width in pixels. Use 0 or omit for auto-size to avoid clipping. Only set when the user explicitly requests a specific width."
+    form: llm
+    min: 0
+    max: 4096
+
+  - name: height
+    type: number
+    required: false
+    default: 0
+    label:
+      en_US: "Height (px)"
+      zh_Hans: "高度 (px)"
+      pt_BR: "Altura (px)"
+      ja_JP: "高さ (px)"
+    human_description:
+      en_US: "Output height in pixels. 0 means auto-size from document content."
+      zh_Hans: "输出高度（像素）。0表示根据文档内容自动调整。"
+      pt_BR: "Altura em pixels. 0 para tamanho automatico."
+      ja_JP: "出力高さ（ピクセル）。0でドキュメント内容に合わせて自動調整。"
+    llm_description: "Output height in pixels. Use 0 or omit for auto-size to avoid clipping. Only set when the user explicitly requests a specific height."
+    form: llm
+    min: 0
+    max: 4096
+
+  - name: device_scale
+    type: number
+    required: false
+    default: 1
+    label:
+      en_US: "Device Scale"
+      zh_Hans: "设备缩放"
+      pt_BR: "Escala"
+      ja_JP: "デバイススケール"
+    human_description:
+      en_US: "Pixel density multiplier for high-DPI rendering (e.g. 2.0 for Retina). Default is 1."
+      zh_Hans: "高DPI渲染的像素密度倍率（例如2.0为Retina）。默认为1。"
+      pt_BR: "Multiplicador de densidade de pixels para alta resolucao. Padrao e 1."
+      ja_JP: "高DPIレンダリング用のピクセル密度倍率（例：2.0でRetina相当）。デフォルトは1です。"
+    llm_description: "Pixel density multiplier for high-DPI output. For example, 2.0 produces a 2x resolution image (Retina quality). Cannot be used together with width/height - they are mutually exclusive. Default is 1."
+    form: llm
+    min: 0
+    max: 4
+
+  - name: user_style
+    type: string
+    required: false
+    default: ""
+    label:
+      en_US: "Custom CSS"
+      zh_Hans: "自定义CSS"
+      pt_BR: "CSS Personalizado"
+      ja_JP: "カスタムCSS"
+    human_description:
+      en_US: "Additional CSS styles to apply when rendering the HTML."
+      zh_Hans: "渲染HTML时应用的额外CSS样式。"
+      pt_BR: "Estilos CSS adicionais para aplicar ao renderizar."
+      ja_JP: "HTMLレンダリング時に適用する追加CSSスタイル。"
+    llm_description: "Additional CSS stylesheet to apply on top of the HTML own styles. For example: body { font-family: sans-serif; margin: 20px; }"
+    form: llm
+extra:
+  python:
+    source: tools/html_to_png.py
